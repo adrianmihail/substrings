@@ -1,19 +1,17 @@
-dictionary = ["below","low","down","go","going","horn","how","howdy","it","i","low",
+dictionary = ["below","down","go","going","horn","how","howdy","it","i","low",
               "own","part","partner","sit"]
 
 def substrings(string, dictionary)
-  counter = {}
+  
+  string_clean = string.downcase.split
 
-  counted = dictionary.map do |word|
-    if string.include?(word)
-      counter[word] = 0
-      counter.each do |k, v|
-        v = v + 1
-      end
+  result = dictionary.reduce(Hash.new(0)) do |found, word|
+    string_clean.each do |match|
+      found[word] += 1 if match.include?(word)
     end
+    found
   end
-
-  p counter
+  p result
 end
 
-substrings("below", dictionary)
+substrings("Howdy partner, sit down! How's it going?", dictionary)
